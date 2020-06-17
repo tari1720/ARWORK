@@ -113,7 +113,7 @@ function addMarkerHiro(){
 	loader.setCrossOrigin('')
 	// add a torus knot & a transparent box	
 	var geometry = new THREE.PlaneBufferGeometry(3,3, 4,4);
-	var texture = loader.load( 'tatungback.jpg',render);
+	var texture = loader.load( 'tatungback.jpg');
 	
 	var material = new THREE.MeshBasicMaterial( { 
 		map: texture,
@@ -128,7 +128,7 @@ function addMarkerHiro(){
 	myWrap.add (mesh);
 	//add ttu baby
 	var geometry = new THREE.PlaneBufferGeometry(0.5,0.5, 4,4);
-	var texture1 = loader.load( 'ttubaby.jpg',render);	
+	var texture1 = loader.load( 'ttubaby.jpg');	
 	var material = new THREE.MeshBasicMaterial( { 
 		map: texture1,
 		transparent: true,
