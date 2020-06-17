@@ -113,7 +113,7 @@ function addMarkerHiro(){
 	// add a torus knot & a transparent box	
 	var geometry = new THREE.PlaneBufferGeometry(3,3, 4,4);
 	var loader = new THREE.TextureLoader();
-	var texture = loader.load( 'https://lh6.ggpht.com/ttu.design/SECrCElByRI/AAAAAAAAAXU/LL8OlrhJhvg/s400/ttu%20campaus.jpg',render);
+	var texture = loader.load( 'tatungback.jpg',render);
 	var material = new THREE.MeshBasicMaterial( { map: texture } );
 	var mesh	= new THREE.Mesh( geometry, material );
 	mesh.position.y	= 0.5
