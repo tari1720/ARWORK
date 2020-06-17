@@ -92,7 +92,11 @@ function init() {
 	})
 
 	markerHiro = addMarkerHiro();
-	//scene.add (markerHiro); 
+	scene.add (markerHiro); 
+	
+	var light = new THREE.PointLight( 0xffffff, 1, 100 );
+	light.position.set( 5, 5, 5 );
+	scene.add( light );
 	
 }
 	
@@ -101,27 +105,33 @@ function addMarkerHiro(){
 
 	var artoolkitMarker = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
 		type : 'pattern',
-		patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro'
+		patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/pattern-tatung.hiro'
 	})
-	let loader = new THREE.TextureLoader();
-	loader.setCrossOrigin('')
-	let texture = loader.load( 'https://i.imgur.com/J0RenHB.png' );
+	let myWrap = new THREE.Group()
+	markerRoot.add (myWrap)
+	
 	// add a torus knot & a transparent box	
-	var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
+	var geometry = new THREE.PlaneBufferGeometry(3,3, 4,4);
+	var loader = new THREE.TextureLoader();
+	var texture = loader.load('https://i.imgur.com/J0RenHB.png');
+	var material = new THREE.MeshBasicMaterial( { map: texture } );
 	var mesh	= new THREE.Mesh( geometry, material );
 	mesh.position.y	= 0.5
-	markerRoot.add (mesh);
-	let material = new THREE.MeshBasicMaterial( { 
-		map: texture
-		} );
-	mesh = new THREE.Mesh (new THREE.BoxGeometry(1,1,1), 
-				new THREE.MeshNormalMaterial({transparent:true, opacity:0.3}));
-	mesh.position.y	= 0.5
-	markerRoot.add (mesh);
-		
+	mesh.rotation.x = -Math.PI / 2;
+	//markerRoot.add (mesh);
+	myWrap.add (mesh);
+
+
+	
+	//markerRoot.scale.set (0.5, 0.5, 0.5) // this WONT work ...
+	//markerRoot.position.set (0.5, 0, -0.3) // this WONT work ...
+	
 	return markerRoot;
 }	
-
+function render()
+{
+	renderer.render( scene, camera );
+}
 
 function animate() {
 	requestAnimationFrame (animate);
@@ -130,7 +140,7 @@ function animate() {
 	if( arToolkitSource.ready === false )	return
 	arToolkitContext.update( arToolkitSource.domElement )
 
-	markerHiro.children[0].rotation.x += 0.1;
+	//markerHiro.children[0].rotation.y += 0.1;
 	
 	renderer.render (scene, camera);	
 }
