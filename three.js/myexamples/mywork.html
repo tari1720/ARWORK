@@ -127,7 +127,7 @@ function addMarkerHiro(){
 	//markerRoot.add (mesh);
 	myWrap.add (mesh);
 	//add ttu baby
-	var geometry = new THREE.PlaneBufferGeometry(2,2, 3,3);
+	var geometry = new THREE.PlaneBufferGeometry(2,2, 4,4);
 	var texture = loader.load( 'ttubaby.jpg');	
 	var material = new THREE.MeshBasicMaterial( { 
 		map: texture,
@@ -136,7 +136,8 @@ function addMarkerHiro(){
 		} );
 
 	var mesh	= new THREE.Mesh( geometry, material );
-	mesh.position.set(0,0.8,0.5);
+	mesh.position.y=0.5
+	mesh.position.z=0.5
 	mesh.rotation.x = -Math.PI / 2;
 	//markerRoot.add (mesh);
 	myWrap.add (mesh);
