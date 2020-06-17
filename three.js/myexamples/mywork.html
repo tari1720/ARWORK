@@ -113,7 +113,7 @@ function addMarkerHiro(){
 	// add a torus knot & a transparent box	
 	var geometry = new THREE.PlaneBufferGeometry(3,3, 4,4);
 	var loader = new THREE.TextureLoader();
-	var texture = loader.load('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/%E5%A4%A7%E5%90%8C%E5%A4%A7%E5%AD%B8%E5%B0%9A%E5%BF%97%E6%95%99%E8%82%B2%E7%B4%80%E5%BF%B5%E9%A4%A8%E6%AD%A3%E9%9D%A2.JPG/1200px-%E5%A4%A7%E5%90%8C%E5%A4%A7%E5%AD%B8%E5%B0%9A%E5%BF%97%E6%95%99%E8%82%B2%E7%B4%80%E5%BF%B5%E9%A4%A8%E6%AD%A3%E9%9D%A2.JPG',render);
+	var texture = loader.load('tatungback.jpg',render);
 	var material = new THREE.MeshBasicMaterial( { map: texture } );
 	var mesh	= new THREE.Mesh( geometry, material );
 	mesh.position.y	= 0.5
