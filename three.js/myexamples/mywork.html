@@ -92,11 +92,7 @@ function init() {
 	})
 
 	markerHiro = addMarkerHiro();
-	scene.add (markerHiro); 
-	
-	var light = new THREE.PointLight( 0xffffff, 1, 100 );
-light.position.set( 5, 5, 5 );
-scene.add( light );
+	//scene.add (markerHiro); 
 	
 }
 	
@@ -107,37 +103,22 @@ function addMarkerHiro(){
 		type : 'pattern',
 		patternUrl : THREEx.ArToolkitContext.baseURL + '../data/data/patt.hiro'
 	})
-
-	// need to add a WRAP ...
-	let myWrap = new THREE.Group()
-	markerRoot.add (myWrap)
 	let loader = new THREE.TextureLoader();
-
+	loader.setCrossOrigin('')
+	let texture = loader.load( 'https://i.imgur.com/J0RenHB.png' );
 	// add a torus knot & a transparent box	
 	var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-	var material	= new THREE.MeshLambertMaterial({color:'cyan'});
 	var mesh	= new THREE.Mesh( geometry, material );
-	let texture = loader.load( 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/%E5%A4%A7%E5%90%8C%E5%A4%A7%E5%AD%B8%E5%B0%9A%E5%BF%97%E6%95%99%E8%82%B2%E7%B4%80%E5%BF%B5%E9%A4%A8%E6%AD%A3%E9%9D%A2.JPG/1200px-%E5%A4%A7%E5%90%8C%E5%A4%A7%E5%AD%B8%E5%B0%9A%E5%BF%97%E6%95%99%E8%82%B2%E7%B4%80%E5%BF%B5%E9%A4%A8%E6%AD%A3%E9%9D%A2.JPG' );
 	mesh.position.y	= 0.5
-	//markerRoot.add (mesh);
-	myWrap.add (mesh);
+	markerRoot.add (mesh);
 	let material = new THREE.MeshBasicMaterial( { 
-		map: texture,
-		transparent: true,
-		side: THREE.DoubleSide
+		map: texture
 		} );
 	mesh = new THREE.Mesh (new THREE.BoxGeometry(1,1,1), 
 				new THREE.MeshNormalMaterial({transparent:true, opacity:0.3}));
 	mesh.position.y	= 0.5
-	//markerRoot.add (mesh);
-	myWrap.add (mesh);
-	
-	//myWrap.scale.set (0.5,0.5,0.5);
-	myWrap.position.set (0.5, 0, 0.5);
-	
-	//markerRoot.scale.set (0.5, 0.5, 0.5) // this WONT work ...
-	//markerRoot.position.set (0.5, 0, -0.3) // this WONT work ...
-	
+	markerRoot.add (mesh);
+		
 	return markerRoot;
 }	
 
@@ -149,7 +130,7 @@ function animate() {
 	if( arToolkitSource.ready === false )	return
 	arToolkitContext.update( arToolkitSource.domElement )
 
-	//markerHiro.children[0].rotation.y += 0.1;
+	markerHiro.children[0].rotation.x += 0.1;
 	
 	renderer.render (scene, camera);	
 }
