@@ -136,8 +136,7 @@ function addMarkerHiro(){
 		} );
 
 	var mesh	= new THREE.Mesh( geometry, material );
-	mesh.position.y= 0.5
-	mesh.position.z = 0.3;
+	mesh.position.set(0,0.8,0.5);
 	//markerRoot.add (mesh);
 	myWrap.add (mesh);
 
