@@ -109,10 +109,9 @@ function addMarkerHiro(){
 	})
 	let myWrap = new THREE.Group()
 	markerRoot.add (myWrap)
-	
+	let loader = new THREE.TextureLoader();
 	// add a torus knot & a transparent box	
 	var geometry = new THREE.PlaneBufferGeometry(3,3, 4,4);
-	var loader = new THREE.TextureLoader();
 	var texture = loader.load( 'tatungback.jpg',render);
 	var material = new THREE.MeshBasicMaterial( { map: texture } );
 	var mesh	= new THREE.Mesh( geometry, material );
